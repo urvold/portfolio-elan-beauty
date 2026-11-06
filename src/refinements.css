@@ -1,0 +1,151 @@
+/* Local finishing pass: preserve the editorial layout and its existing palette. */
+:root { --header-height: 100px; --header-offset: calc(var(--header-height) + env(safe-area-inset-top, 0px)); }
+html { scroll-padding-top: calc(var(--header-offset) + 20px); -webkit-text-size-adjust: 100%; }
+body { min-width: 0; }
+main { padding-inline: env(safe-area-inset-left, 0px) env(safe-area-inset-right, 0px); }
+header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  height: var(--header-offset);
+  margin: 0;
+  padding: env(safe-area-inset-top, 0px) max(4%, env(safe-area-inset-right, 0px)) 0 max(4%, env(safe-area-inset-left, 0px));
+  background: #fffdf9;
+  color: #282423;
+  isolation: isolate;
+}
+header .logo, header nav a, header .header-book, header .menu { color: #282423; }
+header nav a.active { color: var(--wine); }
+.logo, .header-book, .menu, .portrait-image, .service-option > img, .master-options img { flex-shrink: 0; }
+.logo { padding-block: 10px; }
+.header-book { min-height: 44px; }
+.booking-summary { top: calc(var(--header-offset) + 24px); }
+#main, #philosophy, .step-heading { scroll-margin-top: calc(var(--header-offset) + 20px); }
+.step-heading[tabindex="-1"]:focus, #main[tabindex="-1"]:focus { outline: none; }
+a, button, select { touch-action: manipulation; }
+button { -webkit-appearance: none; appearance: none; }
+a:focus-visible, button:focus-visible, select:focus-visible { outline: 2px solid var(--wine); outline-offset: 4px; }
+.hero a:focus-visible, .final-cta a:focus-visible, .lightbox button:focus-visible { outline-color: #fffdf9; }
+.portrait-image { filter: saturate(.72) sepia(.18) contrast(.96); object-position: center 30%; }
+h1, h2, h3 { text-wrap: balance; overflow-wrap: break-word; }
+p { text-wrap: pretty; }
+svg { flex-shrink: 0; }
+.section > *, .section-heading > *, .booking-layout > *, .quiz > *, .detail-layout > *,
+.team-grid > *, .catalog-grid > *, .editorial-services > *, .contact-grid > *, .about-copy > * { min-width: 0; }
+.service-option > span:nth-child(2), .master-options > button > span:nth-child(2), .quiz-result > span { min-width: 0; overflow-wrap: break-word; }
+.service-option strong, .master-options strong { font-weight: 600; }
+.button { white-space: normal; text-align: left; line-height: 1.5; }
+.button svg, .text-link svg { flex-shrink: 0; }
+.service-option.chosen, .master-options > button.chosen { background: #f3e9e7; border-color: var(--wine); }
+.selected-date { color: var(--wine); }
+.page { --page-gutter: calc(6.2% / .876); }
+.page > .final-cta { margin-inline: calc(-1 * var(--page-gutter)); }
+.lightbox { padding-top: max(70px, env(safe-area-inset-top, 0px)); padding-bottom: max(30px, env(safe-area-inset-bottom, 0px)); }
+.lightbox .close { top: max(16px, env(safe-area-inset-top, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); }
+.lightbox img { max-height: calc(100svh - 150px); }
+footer { padding-bottom: max(25px, env(safe-area-inset-bottom, 0px)); }
+@media (hover: none) {
+  .photo:hover img, .gallery-grid button:hover img, .button:hover { transform: none; }
+}
+@media (max-width: 1024px) { .page { --page-gutter: calc(5% / .9); } }
+@media (max-width: 767px) {
+  :root { --header-height: 78px; }
+  header { margin: 0; padding-inline: max(5%, env(safe-area-inset-left, 0px)) max(5%, env(safe-area-inset-right, 0px)); gap: 12px; }
+  header nav {
+    top: 100%;
+    max-height: calc(100vh - var(--header-offset));
+    max-height: calc(100svh - var(--header-offset));
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+    padding-bottom: max(28px, env(safe-area-inset-bottom, 0px));
+    -webkit-overflow-scrolling: touch;
+  }
+  header nav a { padding-block: 13px; }
+  .header-book { font-size: 13px; gap: 10px; }
+  .hero-bottom p, .ritual-banner p, .master-card p, .booking-content > p, .step-body > p,
+  .quiz-content p, .booking-summary p, .footer-top p { font-size: 16px; line-height: 1.75; }
+  .button, .step-controls .button, .hero-bottom .button, .hero-book, .back,
+  .filters button, .text-link, .master-card .text-link, .quiz-content .text-link { font-size: 14px; }
+  .text-link { min-height: 44px; gap: 15px; align-items: center; }
+  .hero-actions { gap: 12px 20px; }
+  .hero-actions .button { padding-inline: 18px; gap: 16px; }
+  .hero-book { gap: 8px; }
+  .fine, small, .demo-note, .ritual-banner small, .booking-summary > small,
+  .quiz-content > .fine, .calendar .fine, .footer-bottom { font-size: 12px; line-height: 1.7; }
+  .category, .card-meta, .detail-facts > span, .field-label, .gallery-grid button > span { font-size: 12px; line-height: 1.6; }
+  .service-option small, .service-option > span > span, .master-options small,
+  .master-options > button > span > span, .summary-master small, .quiz-result small, .quiz-result p { font-size: 12px; line-height: 1.65; }
+  .service-option strong, .master-options strong, .summary-master { font-size: 15px; }
+  .service-option > img { width: 48px; }
+  .master-options img { width: 65px; }
+  .team-grid, .team-grid:has(> :nth-child(4)) { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .team-grid .master-card:last-child:nth-child(3) { grid-column: auto; width: 100%; }
+  .master-card .photo { aspect-ratio: 1; }
+  .master-card h3 { font-size: 34px; }
+  .master-card p { margin-bottom: 16px; }
+  .master-card .text-link { margin-top: 0; }
+  .editorial-services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .editorial-card h3 { font-size: clamp(25px, 6vw, 33px); }
+  .hero-stage { height: clamp(585px, 88svh, 700px); }
+  .hero-title { bottom: 65px; }
+  .hero-foot { font-size: 11px; gap: 15px; }
+  .hero-foot a { min-height: 44px; flex-shrink: 0; gap: 10px; }
+  .hero-top { font-size: 9px; line-height: 1.6; }
+  .hero-index { font-size: 9px; line-height: 1.6; }
+  .arch-image > span { position: static; display: block; font-size: 10px; line-height: 1.7; margin-top: 14px; }
+  .arch-image { padding-bottom: 0; }
+  .ritual-banner { gap: 38px; }
+  .ritual-art { width: 100%; }
+  .ritual-banner .button { gap: 20px; }
+  .ritual-banner small { margin-top: 18px; }
+  .final-cta > .eyebrow { font-size: 9px; line-height: 1.6; }
+  .final-cta h2 { font-size: clamp(32px, 8vw, 56px); }
+  .steps { gap: 8px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .steps button { flex-direction: row; font-size: 12px; align-items: center; gap: 8px; text-align: left; }
+  .steps button > span { flex-shrink: 0; }
+  .step-controls { flex-wrap: wrap; gap: 12px; }
+  .step-controls .button { padding: 16px 18px; gap: 12px; }
+  .calendar-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 3px; }
+  .calendar-grid button { min-height: 44px; font-size: 15px; }
+  .calendar-grid .weekday { font-size: 12px; }
+  .calendar-grid > * { aspect-ratio: auto; min-height: 38px; }
+  .time-slots button { min-height: 48px; font-size: 14px; }
+  .confirmation { gap: 0 14px; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); }
+  .confirmation dt, .confirmation dd { font-size: 14px; overflow-wrap: break-word; }
+  .quiz-content { padding: 30px 20px; }
+  .quiz-content .quiz-progress { font-size: 10px; line-height: 1.6; }
+  .quiz-progress > div { flex-shrink: 0; }
+  .quiz-content p.fine { font-size: 12px; }
+  .quiz-options button { font-size: 16px; min-height: 52px; padding: 15px; }
+  .quiz-visual > div { padding: 22px; gap: 16px; }
+  .quiz-visual p { font-size: 30px; }
+  .quiz-result h3 { font-size: 28px; }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery-grid button > span { min-height: 44px; align-items: center; padding: 12px 0 0; }
+  .lightbox { padding-inline: 0; }
+  .lightbox button { width: 44px; height: 48px; }
+  .lightbox figure { flex: 1; }
+  .lightbox figcaption { font-size: 12px; line-height: 1.6; }
+  .footer-top { grid-template-columns: minmax(0, 1fr); }
+  .footer-top p { font-size: 14px; }
+  .footer-top > a:last-child { font-size: 14px; min-height: 44px; }
+  .page { --page-gutter: calc(6% / .88); }
+}
+@media (max-width: 360px) {
+  header { gap: 10px; }
+  .header-book { font-size: 12px; gap: 6px; }
+  .hero-actions .button { gap: 12px; }
+  .hero-actions { gap: 12px; }
+  .hero h1 { font-size: 42px; }
+  .quiz-visual p { font-size: 27px; }
+  .quiz-content h2 { font-size: 34px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+}
+@media (max-width: 767px) {
+  .detail-layout .page-intro h1 { font-size: clamp(42px, 10.6vw, 58px); }
+  .philosophy h2 { font-size: clamp(36px, 9.8vw, 43px); }
+  .hero-index { color: var(--milk); }
+  .footer-bottom a { display: inline-flex; align-items: center; min-height: 44px; }
+}

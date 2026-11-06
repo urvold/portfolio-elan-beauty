@@ -11,7 +11,7 @@ export type Master={id:string;name:string;role:string;image:string;services:stri
 export const masters:Master[]=[
 {id:'anna',name:'Анна Миронова',role:'Стилист · колорист',image:'anna',services:['hair','color'],text:'Чувствует форму и находит оттенки, которые раскрывают индивидуальность. Любит естественные текстуры и лёгкость в повседневной укладке.'},
 {id:'maria',name:'Мария Белова',role:'Мастер ногтевого сервиса',image:'maria',services:['nails'],text:'Внимательна к каждой детали: от мягкой формы до идеального блика. Её эстетика — чистота линий и сдержанный цвет.'},
-{id:'sofia',name:'София Лебедева',role:'Визажист · brow-мастер',image:'sofia',services:['makeup','brows'],text:'Работает с оттенками и пропорциями, сохраняя ваш характер. Создаёт образы, в которых комфортно быть собой.'},
+{id:'sofia',name:'София Лебедева',role:'Визажист · мастер бровей',image:'sofia',services:['makeup','brows'],text:'Работает с оттенками и пропорциями, сохраняя ваш характер. Создаёт образы, в которых комфортно быть собой.'},
 {id:'elena',name:'Елена Соколова',role:'Специалист по уходу и SPA',image:'elena',services:['face','spa'],text:'Создаёт атмосферу спокойствия через бережное прикосновение и внимание к комфорту гостя.'}];
 export const money=(n:number)=>new Intl.NumberFormat('ru-RU').format(n)+' ₽';
 export function dateKey(d:Date){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
